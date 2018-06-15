@@ -1,0 +1,1074 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Abgabe 3}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{Abgabe 3: Schwingungen}\label{abgabe-3-schwingungen}
+
+\textbf{Teammitglieder:} René Zarwel, Matthias Kastenmüller
+
+Importieren allgemein benötigter Bibliotheken:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{patches} \PY{k}{as} \PY{n+nn}{mpatches}
+        \PY{k+kn}{import} \PY{n+nn}{pylab} \PY{k}{as} \PY{n+nn}{pylab}
+        \PY{k+kn}{import} \PY{n+nn}{numpy}\PY{n+nn}{.}\PY{n+nn}{polynomial}\PY{n+nn}{.}\PY{n+nn}{polynomial} \PY{k}{as} \PY{n+nn}{poly}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{integrate} \PY{k}{import} \PY{n}{odeint}
+        \PY{k+kn}{import} \PY{n+nn}{math}
+        \PY{k+kn}{from} \PY{n+nn}{numpy} \PY{k}{import} \PY{n}{array}\PY{p}{,} \PY{n}{polyval}\PY{p}{,} \PY{n}{polyfit}
+        \PY{k+kn}{import} \PY{n+nn}{vpython} \PY{k}{as} \PY{n+nn}{vp}         \PY{c+c1}{\PYZsh{} get VPython modules for animation}
+        \PY{n}{vec}\PY{o}{=}\PY{n}{vp}\PY{o}{.}\PY{n}{vector}
+\end{Verbatim}
+
+
+    
+    \begin{verbatim}
+<IPython.core.display.Javascript object>
+    \end{verbatim}
+
+    
+    
+    \begin{verbatim}
+<IPython.core.display.Javascript object>
+    \end{verbatim}
+
+    
+    
+    \begin{verbatim}
+<IPython.core.display.Javascript object>
+    \end{verbatim}
+
+    
+    
+    \begin{verbatim}
+<IPython.core.display.Javascript object>
+    \end{verbatim}
+
+    
+    
+    \begin{verbatim}
+<IPython.core.display.Javascript object>
+    \end{verbatim}
+
+    
+    
+    \begin{verbatim}
+<IPython.core.display.Javascript object>
+    \end{verbatim}
+
+    
+    
+    \begin{verbatim}
+<IPython.core.display.HTML object>
+    \end{verbatim}
+
+    
+    
+    \begin{verbatim}
+<IPython.core.display.Javascript object>
+    \end{verbatim}
+
+    
+    \subsection{Aufgabe 1: Gedämpfte
+Schwingungen}\label{aufgabe-1-geduxe4mpfte-schwingungen}
+
+    Bei einer harmonischen Schwingung wirkt lediglich die rücktreibende
+Kraft. Daraus ergibt sich folgenden Schwingungsgleichung:
+
+\[
+F = -k \cdot x \quad \text{mit} \quad k=\text{Federkonstante} \\
+\omega_0 = \sqrt{\frac{k}{m}}  \quad \text{- Ungedämpfte Eigenkreisfrequenz } \\
+\ddot{x} + \omega_0^2 \cdot x = 0
+\]
+
+Bei der gedämpften Schwingung wirk zusätzlich zur rücktreibenden Kraft
+noch eine Reibungskraft \(F_R\). So wird die Schwingungsgleichung
+folgendermaßen erweitert:
+
+\[
+F_R = - c \cdot v^n \quad\text{mit}\quad c=\text{Dämpfungskonstante} \quad\text{und}\quad n=\{0,\frac{1}{2}, 1, 2\} \\
+\gamma = \frac{c}{2 \cdot m} \quad \text{- Abklingkonstante} \\
+\ddot{x} + 2 \cdot \gamma \cdot \dot{x}^n + \omega_0^2 \cdot x = 0
+\]
+
+Zur Lösung dieser Differentialgleichung stellen wir folgende Gleichungen
+auf:
+
+\[
+y_1 = x \\
+y_2 = \dot{x} \\
+\dot{y_1} = y_2 = \dot{x} \\
+\dot{y_2} = \ddot{x} = - 2 \cdot \gamma \cdot \dot{x}^n - \omega_0^2 \cdot x
+\]
+
+Durch die Bestimmung vom Anfangswerten für \(x\) und \(\dot{x}=v\)
+(Anfangswertproblem) können diese nun mittels der ODEINT-Funktion
+numerisch gelöst werden. Hierfür wurde definiert: \[
+x = 1 \\
+\dot{x}=0
+\]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{x0} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}          \PY{c+c1}{\PYZsh{} Anfangsbedingungen [x, v]}
+        \PY{n}{t} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{500}\PY{p}{)}  \PY{c+c1}{\PYZsh{} 500 Zeitschritte von 0 bis 10s}
+        
+        \PY{c+c1}{\PYZsh{}Own Sign Func cause np.sign is unstable with odeint}
+        \PY{n}{sgn} \PY{o}{=} \PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{np}\PY{o}{.}\PY{n}{tanh}\PY{p}{(}\PY{l+m+mi}{100}\PY{o}{*}\PY{n}{x}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}Gleichungssystem für die Differentialgleichung als Funktion}
+        \PY{k}{def} \PY{n+nf}{swing}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{t}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return}\PY{p}{[} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{gamma}\PY{o}{*}\PY{n}{sgn}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{o}{*}\PY{n+nb}{abs}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{n}{n}\PY{o}{\PYZhy{}}\PY{p}{(}\PY{n}{omega0}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{p}{]}
+        
+        \PY{c+c1}{\PYZsh{}Definiton von Konstanten für Schwingfall}
+        \PY{n}{omega0} \PY{o}{=} \PY{l+m+mi}{6}                  
+        \PY{n}{gamma} \PY{o}{=} \PY{l+m+mi}{1}
+        
+        \PY{c+c1}{\PYZsh{}Lösung und Plot für n=(0, 1/2, 1, 2)}
+        \PY{n}{n}\PY{o}{=}\PY{l+m+mi}{0}
+        \PY{n}{x} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{func}\PY{o}{=}\PY{n}{swing}\PY{p}{,} \PY{n}{y0}\PY{o}{=}\PY{n}{x0}\PY{p}{,} \PY{n}{t}\PY{o}{=}\PY{n}{t}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{t}\PY{p}{,} \PY{n}{x}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{n=0}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{n}{n}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{2}
+        \PY{n}{x} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{func}\PY{o}{=}\PY{n}{swing}\PY{p}{,} \PY{n}{y0}\PY{o}{=}\PY{n}{x0}\PY{p}{,} \PY{n}{t}\PY{o}{=}\PY{n}{t}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{t}\PY{p}{,} \PY{n}{x}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{n=1/2}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{n}{n}\PY{o}{=}\PY{l+m+mi}{1}
+        \PY{n}{x} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{func}\PY{o}{=}\PY{n}{swing}\PY{p}{,} \PY{n}{y0}\PY{o}{=}\PY{n}{x0}\PY{p}{,} \PY{n}{t}\PY{o}{=}\PY{n}{t}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{t}\PY{p}{,} \PY{n}{x}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{n=1}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{n}{n}\PY{o}{=}\PY{l+m+mi}{2}
+        \PY{n}{x} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{func}\PY{o}{=}\PY{n}{swing}\PY{p}{,} \PY{n}{y0}\PY{o}{=}\PY{n}{x0}\PY{p}{,} \PY{n}{t}\PY{o}{=}\PY{n}{t}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{t}\PY{p}{,} \PY{n}{x}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{n=2}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Plot Beschriftung}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Weg/Zeit\PYZhy{}Diagramm}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Zeit (t)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Weg (Theta)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}2}]:} <matplotlib.legend.Legend at 0x1154cb8d0>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_4_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Im obigen Plot ist der Schwingfall dargestellt, bei dem die ungedämpfte
+Eigenkreisfrequenz größer als die Dämpfungskonstante ist. Man erkennt,
+dass bei konstanter Dämpfung ( \(n=0\) ) die Schwingung auch konstant
+abnimmt. Bei den anderen Fällen nimmt die Schwingung stärker ab und
+gleicht einer Parabel ( \$ n=\frac{1}{2}\$ ), einer e-Funktion ( \(n=1\)
+) und einer Hyperbel ( \(n=2\) ). Besonders interessant ist auch der
+Fall der zur Geschwindigkeit quadratischen Dämpfung, da dies durch
+Umwirblungen noch lange weiter schwingt.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{}Definiton von Konstanten für aperiodischen Grenzfall}
+        \PY{n}{omega0} \PY{o}{=} \PY{l+m+mi}{6}                  
+        \PY{n}{gamma} \PY{o}{=} \PY{l+m+mi}{6}
+        
+        \PY{c+c1}{\PYZsh{}Lösung und Plot für n=(0, 1/2, 1, 2)}
+        
+        \PY{n}{n}\PY{o}{=}\PY{l+m+mi}{0}
+        \PY{n}{x} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{func}\PY{o}{=}\PY{n}{swing}\PY{p}{,} \PY{n}{y0}\PY{o}{=}\PY{n}{x0}\PY{p}{,} \PY{n}{t}\PY{o}{=}\PY{n}{t}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{t}\PY{p}{,} \PY{n}{x}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{n=0}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{n}{n}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{2}
+        \PY{n}{x} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{func}\PY{o}{=}\PY{n}{swing}\PY{p}{,} \PY{n}{y0}\PY{o}{=}\PY{n}{x0}\PY{p}{,} \PY{n}{t}\PY{o}{=}\PY{n}{t}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{t}\PY{p}{,} \PY{n}{x}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{n=1/2}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{n}{n}\PY{o}{=}\PY{l+m+mi}{1}
+        \PY{n}{x} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{func}\PY{o}{=}\PY{n}{swing}\PY{p}{,} \PY{n}{y0}\PY{o}{=}\PY{n}{x0}\PY{p}{,} \PY{n}{t}\PY{o}{=}\PY{n}{t}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{t}\PY{p}{,} \PY{n}{x}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{n=1}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{n}{n}\PY{o}{=}\PY{l+m+mi}{2}
+        \PY{n}{x} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{func}\PY{o}{=}\PY{n}{swing}\PY{p}{,} \PY{n}{y0}\PY{o}{=}\PY{n}{x0}\PY{p}{,} \PY{n}{t}\PY{o}{=}\PY{n}{t}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{t}\PY{p}{,} \PY{n}{x}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{n=2}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Plot Beschriftung}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Weg/Zeit\PYZhy{}Diagramm}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Zeit (t)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Weg (Theta)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}3}]:} <matplotlib.legend.Legend at 0x1155f4518>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_6_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Im obigen Plot ist der aperiodische Grenzfall dargestellt, bei dem die
+ungedämpfte Eigenkreisfrequenz gleich der Dämpfungskonstante ist. In
+diesem Fall wirkt die Dämpfung so, dass der Ruhezustand möglichst
+schnell erreicht wird. Dies sieht man an einer schnellen Annäherung an
+\(0\). Lediglich bei \(n=2\) besteht noch ein Nachschwingen ähnlich zum
+vorherigen Beispiel. Interessant ist die konstante Dämpfung. Durch die
+im Verhältnis zur Dämpfung hohe Startposition \(x=1\) kann das
+herabfallende Objekt nicht optimal gedämpft werden, sodass es sich
+zunächst an der 0 Position vorbei bewegt. Anschließend bleibt es bei
+einer ausgeglichenen Position stehen und bewegt sich langsam auf die 0
+Position zu.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{c+c1}{\PYZsh{}Definiton von Konstanten für Kriechfall}
+        \PY{n}{omega0} \PY{o}{=} \PY{l+m+mi}{6}                  
+        \PY{n}{gamma} \PY{o}{=} \PY{l+m+mi}{12}
+        
+        \PY{c+c1}{\PYZsh{}Lösung und Plot für n=(0, 1/2, 1, 2)}
+        
+        \PY{n}{n}\PY{o}{=}\PY{l+m+mi}{0}
+        \PY{n}{x} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{func}\PY{o}{=}\PY{n}{swing}\PY{p}{,} \PY{n}{y0}\PY{o}{=}\PY{n}{x0}\PY{p}{,} \PY{n}{t}\PY{o}{=}\PY{n}{t}\PY{p}{,} \PY{n}{atol}\PY{o}{=}\PY{l+m+mf}{1e\PYZhy{}1}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{t}\PY{p}{,} \PY{n}{x}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{n=0}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{n}{n}\PY{o}{=}\PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{2}
+        \PY{n}{x} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{func}\PY{o}{=}\PY{n}{swing}\PY{p}{,} \PY{n}{y0}\PY{o}{=}\PY{n}{x0}\PY{p}{,} \PY{n}{t}\PY{o}{=}\PY{n}{t}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{t}\PY{p}{,} \PY{n}{x}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{n=1/2}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{n}{n}\PY{o}{=}\PY{l+m+mi}{1}
+        \PY{n}{x} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{func}\PY{o}{=}\PY{n}{swing}\PY{p}{,} \PY{n}{y0}\PY{o}{=}\PY{n}{x0}\PY{p}{,} \PY{n}{t}\PY{o}{=}\PY{n}{t}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{t}\PY{p}{,} \PY{n}{x}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{n=1}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{n}{n}\PY{o}{=}\PY{l+m+mi}{2}
+        \PY{n}{x} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{func}\PY{o}{=}\PY{n}{swing}\PY{p}{,} \PY{n}{y0}\PY{o}{=}\PY{n}{x0}\PY{p}{,} \PY{n}{t}\PY{o}{=}\PY{n}{t}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{t}\PY{p}{,} \PY{n}{x}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{n=2}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Plot Beschriftung}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Weg/Zeit\PYZhy{}Diagramm}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Zeit (t)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Weg (Theta)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}4}]:} <matplotlib.legend.Legend at 0x1156dd6a0>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_8_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Im obigen Plot ist der Kriechfall dargestellt, bei dem die ungedämpfte
+Eigenkreisfrequenz kleiner als die Dämpfungskonstante ist. Dies ist
+daran ersichtlich, dass sich das Objekt durch die starke Dämpfung
+langsamer als im vorherigen Beispiel auf die 0 Position zu bewegt. Auch
+hier schwingt im Fall von \(n=2\) das Object noch etwas nach und die
+konstante Dämpfung findet einen Punkt, ab dem sich das Objekt nur noch
+sehr langsam weiter bewegt. Bei diesem Punkt ist die treibende Kraft der
+konstanten Dämpfung ausgeglichen.
+
+    \subsection{Aufgabe 2: Das nichtlineare Pendel
+I}\label{aufgabe-2-das-nichtlineare-pendel-i}
+
+    Es soll folgenden nicht Differentialgleichung für ein nichtlineares
+Pendel gelöst werden:
+
+\[
+\ddot{\theta} + \frac{g}{l} \cdot \sin(\theta) = 0 \\
+\text{mit} \quad g=9.81\frac{m}{s^2} \quad \text{und} \quad l=10cm
+\]
+
+Ähnlich zur Aufgabe 1 können für die Lösung folgende Gleichungen
+aufgestellt werden.
+
+\[
+y_1 = x \\
+y_2 = \dot{x} \\
+\dot{y_1} = y_2 = \dot{x} \\
+\dot{y_2} = \ddot{x} = -\frac{g}{l} \cdot \sin(\theta)
+\]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{t} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{500}\PY{p}{)}  \PY{c+c1}{\PYZsh{} 500 Zeitschritte von 0 bis 10s}
+        \PY{n}{g} \PY{o}{=} \PY{l+m+mf}{9.81}
+        \PY{n}{l} \PY{o}{=} \PY{l+m+mf}{0.01}
+        
+        \PY{k}{def} \PY{n+nf}{nlswing}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{t}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return}\PY{p}{[} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{g}\PY{o}{/}\PY{n}{l}\PY{o}{*}\PY{n}{math}\PY{o}{.}\PY{n}{sin}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)} \PY{p}{]}
+\end{Verbatim}
+
+
+    Durch verschiedene Anfangsauslenkungen \(\theta_0\) und die
+Anfangsgeschwindigkeiten \(v_0=0\) wird im folgenden das Verhalten
+analysiert.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{theta0} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}     
+        \PY{n}{theta} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{func}\PY{o}{=}\PY{n}{nlswing}\PY{p}{,} \PY{n}{y0}\PY{o}{=}\PY{n}{theta0}\PY{p}{,} \PY{n}{t}\PY{o}{=}\PY{n}{t}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{t}\PY{p}{,} \PY{n}{theta}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{theta=1, v=0}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{n}{theta0} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}        
+        \PY{n}{theta} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{func}\PY{o}{=}\PY{n}{nlswing}\PY{p}{,} \PY{n}{y0}\PY{o}{=}\PY{n}{theta0}\PY{p}{,} \PY{n}{t}\PY{o}{=}\PY{n}{t}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{t}\PY{p}{,} \PY{n}{theta}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{theta=2, v=0}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{n}{theta0} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}        
+        \PY{n}{theta} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{func}\PY{o}{=}\PY{n}{nlswing}\PY{p}{,} \PY{n}{y0}\PY{o}{=}\PY{n}{theta0}\PY{p}{,} \PY{n}{t}\PY{o}{=}\PY{n}{t}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{t}\PY{p}{,} \PY{n}{theta}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{theta=3, v=0}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Plot Beschriftung}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Weg/Zeit\PYZhy{}Diagramm}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Zeit (t)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Weg (Theta)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}6}]:} <matplotlib.legend.Legend at 0x1157c0128>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_14_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Im obigen Beispiel ist ersichtlich, dass mit steigender
+Anfangsauslenkungen natürlich eine längere Schwingdauer in einer
+Richtung und auch eine entsprechende Auslenkung erreicht wird. Da in
+diesem Modell keine Reibung berücksichtigt wird, bleibt die Schwingung
+dauerhaft erhalten.
+
+Im nächsten Beispiel werden Grenzfälle analysiert.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{theta0} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}        
+        \PY{n}{theta} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{func}\PY{o}{=}\PY{n}{nlswing}\PY{p}{,} \PY{n}{y0}\PY{o}{=}\PY{n}{theta0}\PY{p}{,} \PY{n}{t}\PY{o}{=}\PY{n}{t}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{t}\PY{p}{,} \PY{p}{[}\PY{n}{math}\PY{o}{.}\PY{n}{fmod}\PY{p}{(}\PY{n}{t}\PY{p}{,} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{math}\PY{o}{.}\PY{n}{pi}\PY{p}{)} \PY{k}{for} \PY{n}{t} \PY{o+ow}{in} \PY{n}{theta}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{theta=4, v=0}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{n}{theta0} \PY{o}{=} \PY{p}{[}\PY{n}{math}\PY{o}{.}\PY{n}{pi}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}        
+        \PY{n}{theta} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{func}\PY{o}{=}\PY{n}{nlswing}\PY{p}{,} \PY{n}{y0}\PY{o}{=}\PY{n}{theta0}\PY{p}{,} \PY{n}{t}\PY{o}{=}\PY{n}{t}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{t}\PY{p}{,}\PY{n}{theta}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{theta=pi, v=0}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{n}{theta0} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}        
+        \PY{n}{theta} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{func}\PY{o}{=}\PY{n}{nlswing}\PY{p}{,} \PY{n}{y0}\PY{o}{=}\PY{n}{theta0}\PY{p}{,} \PY{n}{t}\PY{o}{=}\PY{n}{t}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{t}\PY{p}{,}\PY{n}{theta}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{theta=0, v=0}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Plot Beschriftung}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Weg/Zeit\PYZhy{}Diagramm}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Zeit (t)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Weg (Theta)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}7}]:} <matplotlib.legend.Legend at 0x115836668>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_16_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Im obigen Beispiel sind für die Anfangsauslenkung die Ruhepositionen
+beim Winkel \(\theta=0\) und beim senkrechten Stand mit \(\theta=\pi\)
+dargestellt. Hier bleibt die Position erhalten, da sich die Kräfte in
+beiden Positionen ausgleichen. In der Praxis wäre dies nur schwer zu
+erreichen, da durch äußere Einflüsse, gerade beim senkrachtend Stand
+nach Oben, die Ruhe schnell gekippt werden würde.
+
+Zusätzlich ist noch ein Fall dargestellt, bei dem die Anfangsauslenkung
+über die höchste Position \(\theta=\pi\) gezogen wurde. Dies verhält
+sich jedoch ähnlich zu dem Fall, dass das Pendel an die gleiche Position
+bloß einfach in die entgegengesetzte Richtung hochgezogen würde. Durch
+einfaches verschieben der Kurven würde die normale Schwingung
+dargestellt werden.
+
+Im nächsten Beispiel sind verschiedene Anfangsgeschwindigkeiten
+dargestellt:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{theta0} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}     
+        \PY{n}{theta} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{func}\PY{o}{=}\PY{n}{nlswing}\PY{p}{,} \PY{n}{y0}\PY{o}{=}\PY{n}{theta0}\PY{p}{,} \PY{n}{t}\PY{o}{=}\PY{n}{t}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{t}\PY{p}{,} \PY{n}{theta}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{theta=1, v=0}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{n}{theta0} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{20}\PY{p}{]}        
+        \PY{n}{theta} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{func}\PY{o}{=}\PY{n}{nlswing}\PY{p}{,} \PY{n}{y0}\PY{o}{=}\PY{n}{theta0}\PY{p}{,} \PY{n}{t}\PY{o}{=}\PY{n}{t}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{t}\PY{p}{,} \PY{n}{theta}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{theta=1, v=20}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{n}{theta0} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{30}\PY{p}{]}        
+        \PY{n}{theta} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{func}\PY{o}{=}\PY{n}{nlswing}\PY{p}{,} \PY{n}{y0}\PY{o}{=}\PY{n}{theta0}\PY{p}{,} \PY{n}{t}\PY{o}{=}\PY{n}{t}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{t}\PY{p}{,} \PY{n}{theta}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{theta=1, v=30}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Plot Beschriftung}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Weg/Zeit\PYZhy{}Diagramm}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Zeit (t)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Weg (Theta)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}8}]:} <matplotlib.legend.Legend at 0x11597a828>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_18_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Da die Anfangsgeschwindigkeit nicht 0 ist, bewegt sich das Pendel
+anfangs noch nach oben. Je höher \(v_0\) ist, desto weiter bewegt sich
+das Pendel nach oben. Nachdem der Höhepunkt erreicht wurde, verhält sich
+das Pendel so, als hätte man es am Höhepunkt ohne Anfangsgeschwindigkeit
+losgelassen.
+
+Im nächsten Plot sind wieder interessante Verhalten für besondere
+Anfangsgeschwindigkeiten zu sehen:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{theta0} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{]}        
+        \PY{n}{theta} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{func}\PY{o}{=}\PY{n}{nlswing}\PY{p}{,} \PY{n}{y0}\PY{o}{=}\PY{n}{theta0}\PY{p}{,} \PY{n}{t}\PY{o}{=}\PY{n}{t}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{t}\PY{p}{,} \PY{n}{theta}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{theta=1, v=50}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{n}{theta0} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{55}\PY{p}{]}        
+        \PY{n}{theta} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{func}\PY{o}{=}\PY{n}{nlswing}\PY{p}{,} \PY{n}{y0}\PY{o}{=}\PY{n}{theta0}\PY{p}{,} \PY{n}{t}\PY{o}{=}\PY{n}{t}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{t}\PY{p}{,} \PY{n}{theta}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{theta=1, v=55}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{n}{theta0} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{55}\PY{p}{]}        
+        \PY{n}{theta} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{func}\PY{o}{=}\PY{n}{nlswing}\PY{p}{,} \PY{n}{y0}\PY{o}{=}\PY{n}{theta0}\PY{p}{,} \PY{n}{t}\PY{o}{=}\PY{n}{t}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{t}\PY{p}{,} \PY{n}{theta}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{theta=1, v=\PYZhy{}55}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Plot Beschriftung}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Weg/Zeit\PYZhy{}Diagramm}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Zeit (t)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Weg (Theta)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}9}]:} <matplotlib.legend.Legend at 0x115a58be0>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_20_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Bis zu einer Anfangsgeschwindigkeit von etwa 50m/s kommt das Pendel noch
+vor dem senkrechtend Stand mit \(\theta=\pi\) zum stehen und kommt in
+den Schwingfall. Wenn die Geschwindigkeit höher gewählt wird, wird die
+höchste Position überlaufen und das Pendel dreht sich in einer Richtung
+im Kreis. Dies ist daran zu erkennen, dass der Winkel nicht um den
+Null-Punkt schwingt. Der Dargestellte Winkel ist somit die Anzahl an
+Umdrehungen, die das Pendel schon absolviert hat.
+
+Im folgenden ist noch der Phasenraum für verschiedene bereits oben
+dargestellte Anfangspositionen geplottet.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{theta0} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}     
+         \PY{n}{theta} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{func}\PY{o}{=}\PY{n}{nlswing}\PY{p}{,} \PY{n}{y0}\PY{o}{=}\PY{n}{theta0}\PY{p}{,} \PY{n}{t}\PY{o}{=}\PY{n}{t}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{n}{math}\PY{o}{.}\PY{n}{fmod}\PY{p}{(}\PY{n}{t}\PY{p}{,}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{math}\PY{o}{.}\PY{n}{pi}\PY{p}{)} \PY{k}{for} \PY{n}{t} \PY{o+ow}{in} \PY{n}{theta}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}\PY{p}{,} \PY{n}{theta}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{theta=1, v=0}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         
+         \PY{n}{theta0} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}     
+         \PY{n}{theta} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{func}\PY{o}{=}\PY{n}{nlswing}\PY{p}{,} \PY{n}{y0}\PY{o}{=}\PY{n}{theta0}\PY{p}{,} \PY{n}{t}\PY{o}{=}\PY{n}{t}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{n}{math}\PY{o}{.}\PY{n}{fmod}\PY{p}{(}\PY{n}{t}\PY{p}{,}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{math}\PY{o}{.}\PY{n}{pi}\PY{p}{)} \PY{k}{for} \PY{n}{t} \PY{o+ow}{in} \PY{n}{theta}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}\PY{p}{,} \PY{n}{theta}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{theta=3, v=0}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         
+         \PY{n}{theta0} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}     
+         \PY{n}{theta} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{func}\PY{o}{=}\PY{n}{nlswing}\PY{p}{,} \PY{n}{y0}\PY{o}{=}\PY{n}{theta0}\PY{p}{,} \PY{n}{t}\PY{o}{=}\PY{n}{t}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{n}{math}\PY{o}{.}\PY{n}{fmod}\PY{p}{(}\PY{n}{t}\PY{p}{,}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{math}\PY{o}{.}\PY{n}{pi}\PY{p}{)} \PY{k}{for} \PY{n}{t} \PY{o+ow}{in} \PY{n}{theta}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}\PY{p}{,} \PY{n}{theta}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{theta=4, v=0}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         
+         \PY{n}{theta0} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{55}\PY{p}{]}     
+         \PY{n}{theta} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{func}\PY{o}{=}\PY{n}{nlswing}\PY{p}{,} \PY{n}{y0}\PY{o}{=}\PY{n}{theta0}\PY{p}{,} \PY{n}{t}\PY{o}{=}\PY{n}{t}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{n}{math}\PY{o}{.}\PY{n}{fmod}\PY{p}{(}\PY{n}{t}\PY{p}{,}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{math}\PY{o}{.}\PY{n}{pi}\PY{p}{)} \PY{k}{for} \PY{n}{t} \PY{o+ow}{in} \PY{n}{theta}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}\PY{p}{,} \PY{n}{theta}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{theta=1, v=55}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Plot Beschriftung}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Phasenraum}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Theta}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Winkelgeschwindigkeit (v)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}10}]:} <matplotlib.legend.Legend at 0x115b4b3c8>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_22_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsection{Aufgabe 3: Erzwungene
+Schwingung}\label{aufgabe-3-erzwungene-schwingung}
+
+Zunächst werden wird wieder das Gleichungssystem zur Lösung des DGL
+aufgestellt.
+
+\[
+y_1 = x \\
+y_2 = \dot{x} \\
+\dot{y_1} = y_2 = \dot{x} \\
+\dot{y_2} = \ddot{x} = \frac{1}{m}(F_0 \cdot cos{\omega t} -D\dot{x}-cx )
+\]
+
+    Der Zustand zum Zeitpunkt t = 0 wird festgelegt als:
+
+\begin{align}
+\vec{z_0}= \left( \begin{array}{c}x_0\\v_0\end{array} \right) = \left( \begin{array}{c}0\\0\end{array} \right)
+\end{align}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}343}]:} \PY{n}{t} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{num}\PY{o}{=}\PY{l+m+mi}{1000}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{}Definierte Randbedingungen}
+          \PY{n}{omega\PYZus{}0} \PY{o}{=} \PY{l+m+mi}{5}
+          \PY{n}{m} \PY{o}{=} \PY{l+m+mi}{3}
+          \PY{n}{D} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{/}\PY{n}{omega\PYZus{}0}
+          \PY{n}{F0} \PY{o}{=} \PY{l+m+mi}{30}
+          \PY{n}{c} \PY{o}{=} \PY{l+m+mf}{0.2}
+          
+          \PY{k}{def} \PY{n+nf}{erzSwing}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{t}\PY{p}{,}\PY{n}{om}\PY{p}{)}\PY{p}{:}
+              \PY{k}{return}\PY{p}{[} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{p}{(}\PY{n}{F0}\PY{o}{*}\PY{n}{math}\PY{o}{.}\PY{n}{cos}\PY{p}{(}\PY{n}{om}\PY{o}{*}\PY{n}{t}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{D}\PY{o}{*}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{c}\PY{o}{*}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{o}{/}\PY{n}{m} \PY{p}{]}
+          
+          
+          \PY{n}{start} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}   
+          \PY{n}{omega} \PY{o}{=} \PY{l+m+mi}{5}
+          \PY{n}{theta} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{func}\PY{o}{=}\PY{n}{erzSwing}\PY{p}{,} \PY{n}{y0}\PY{o}{=}\PY{n}{start}\PY{p}{,} \PY{n}{t}\PY{o}{=}\PY{n}{t}\PY{p}{,} \PY{n}{args}\PY{o}{=}\PY{p}{(}\PY{n}{omega}\PY{p}{,}\PY{p}{)}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{t}\PY{p}{,} \PY{n}{theta}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+          
+          \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Zeit\PYZhy{}Weg\PYZhy{}Diagramm}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Zeit (t)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Amplitude}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}343}]:} Text(0,0.5,'Amplitude')
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_25_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Im obigen Bild ist die Einschwingphase gut zu erkennen.
+
+Im folgenden wird die Resonanzkurve berechnet.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}342}]:} \PY{k}{def} \PY{n+nf}{resAnalytisch}\PY{p}{(}\PY{n}{omega}\PY{p}{)}\PY{p}{:}
+              \PY{n}{n} \PY{o}{=} \PY{n}{omega}\PY{o}{/}\PY{n}{omega\PYZus{}0}
+              \PY{k}{return} \PY{l+m+mi}{1}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{n}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{o}{+}\PY{l+m+mi}{4}\PY{o}{*}\PY{p}{(}\PY{n}{D}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n}{n}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+          
+          \PY{k}{def} \PY{n+nf}{resNum}\PY{p}{(}\PY{n}{omega}\PY{p}{)}\PY{p}{:}
+              \PY{n}{theta} \PY{o}{=} \PY{n}{odeint}\PY{p}{(}\PY{n}{func}\PY{o}{=}\PY{n}{erzSwing}\PY{p}{,} \PY{n}{y0}\PY{o}{=}\PY{n}{start}\PY{p}{,} \PY{n}{t}\PY{o}{=}\PY{n}{t}\PY{p}{,} \PY{n}{args}\PY{o}{=}\PY{p}{(}\PY{n}{omega}\PY{p}{,}\PY{p}{)}\PY{p}{)}
+              \PY{k}{return} \PY{n+nb}{max}\PY{p}{(}\PY{p}{[}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n}{theta}\PY{p}{[}\PY{l+m+mi}{900}\PY{p}{:}\PY{l+m+mi}{1000}\PY{p}{]}\PY{p}{]}\PY{p}{)}\PY{o}{/}\PY{n}{F0}
+              
+              
+          \PY{n}{omega\PYZus{}0} \PY{o}{=} \PY{l+m+mi}{6}
+          \PY{n}{r} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(} \PY{l+m+mf}{0.01}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mf}{0.1}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{r}\PY{p}{,} \PY{n}{resAnalytisch}\PY{p}{(}\PY{n}{r}\PY{p}{)}\PY{p}{,}\PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{analytisch}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{r}\PY{p}{,} \PY{p}{[}\PY{n}{resNum}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n}{r}\PY{p}{]}\PY{p}{,}\PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{numerisch}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          
+          
+          \PY{c+c1}{\PYZsh{}Plotbeschriftung}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Amplitudengang}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Amplitude}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Kreisfrequenz}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}342}]:} <matplotlib.legend.Legend at 0x155e639908>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_27_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    In einem nächsten Schritt wird ein kleinerer nicht linearer Teil
+hinzugefügt. Alle anderen Werte bleiben identisch.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{z1}\PY{o}{=}\PY{p}{[}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}
+         \PY{n}{z2}\PY{o}{=}\PY{p}{[}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}
+         \PY{n}{z3}\PY{o}{=}\PY{p}{[}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}
+         
+         \PY{n}{m} \PY{o}{=} \PY{l+m+mi}{1}
+         
+         \PY{n}{dt} \PY{o}{=} \PY{l+m+mf}{0.00005}
+         \PY{n}{D} \PY{o}{=} \PY{l+m+mi}{4} \PY{o}{*} \PY{n}{math}\PY{o}{.}\PY{n}{pi} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{m} 
+         \PY{n}{D3}\PY{o}{=} \PY{l+m+mi}{4} \PY{o}{*} \PY{n}{math}\PY{o}{.}\PY{n}{pi} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{m} \PY{o}{/} \PY{l+m+mi}{20}
+         \PY{n}{omega1} \PY{o}{=} \PY{l+m+mi}{1} \PY{o}{*} \PY{p}{(}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{math}\PY{o}{.}\PY{n}{pi}\PY{p}{)} \PY{o}{*} \PY{l+m+mf}{0.97}          \PY{c+c1}{\PYZsh{} (2 * math.pi) =\PYZgt{} Eine Schwingung pro Sekunde}
+         \PY{n}{omega2} \PY{o}{=} \PY{l+m+mi}{1} \PY{o}{*} \PY{p}{(}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{math}\PY{o}{.}\PY{n}{pi}\PY{p}{)}           \PY{c+c1}{\PYZsh{} (2 * math.pi) =\PYZgt{} Eine Schwingung pro Sekunde}
+         \PY{n}{F0} \PY{o}{=} \PY{l+m+mi}{20}
+         \PY{n}{c} \PY{o}{=} \PY{l+m+mf}{0.1}
+         \PY{n}{t} \PY{o}{=} \PY{l+m+mf}{0.0}
+         \PY{n}{tmax} \PY{o}{=} \PY{l+m+mi}{30}
+             
+         \PY{k}{def} \PY{n+nf}{calcNextW}\PY{p}{(}\PY{n}{innerz}\PY{p}{,} \PY{n}{inneromega}\PY{p}{)}\PY{p}{:}
+             \PY{n}{dz} \PY{o}{=}   \PY{p}{[}\PY{n}{innerz}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{1} \PY{o}{/} \PY{n}{m} \PY{o}{*} \PY{p}{(}\PY{n}{F0} \PY{o}{*} \PY{n}{math}\PY{o}{.}\PY{n}{cos}\PY{p}{(}\PY{n}{inneromega} \PY{o}{*} \PY{n}{t}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{D} \PY{o}{*} \PY{n}{innerz}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{D3} \PY{o}{*} \PY{n}{innerz}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{3} \PY{o}{\PYZhy{}} \PY{n}{c} \PY{o}{*} \PY{n}{innerz}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{p}{)}\PY{p}{]}
+             \PY{n}{znew} \PY{o}{=} \PY{p}{[}\PY{n}{innerz}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{+} \PY{n}{dz}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{*} \PY{n}{dt} \PY{p}{,} \PY{n}{innerz}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{+} \PY{n}{dz}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{*} \PY{n}{dt}\PY{p}{]}
+             \PY{n}{innerz}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{znew}\PY{p}{)}
+         
+         \PY{k}{while} \PY{n}{t} \PY{o}{\PYZlt{}} \PY{n}{tmax}\PY{p}{:}
+             \PY{n}{t} \PY{o}{=} \PY{n}{t} \PY{o}{+} \PY{n}{dt}
+             \PY{n}{calcNextW}\PY{p}{(}\PY{n}{z1}\PY{p}{,} \PY{n}{omega1}\PY{p}{)}\PY{p}{;}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Zeit\PYZhy{}Weg\PYZhy{}Diagramm}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Zeit (t)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Amplitude}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{z1}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{p}{[}\PY{n}{element}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{k}{for} \PY{n}{element} \PY{o+ow}{in} \PY{n}{z1}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}13}]:} [<matplotlib.lines.Line2D at 0x115966780>]
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_29_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Es ist zu sehen, dass sich die bisherige Schwingung mit dem
+hinzugefügten Teil überlagert.
+
+    \subsection{Aufgabe 4: Das nichtlineare Pendel
+II}\label{aufgabe-4-das-nichtlineare-pendel-ii}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{z1}\PY{o}{=}\PY{p}{[}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}
+         \PY{n}{z2}\PY{o}{=}\PY{p}{[}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}
+         \PY{n}{z3}\PY{o}{=}\PY{p}{[}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}
+         \PY{n}{z4}\PY{o}{=}\PY{p}{[}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}
+         
+         \PY{n}{dt} \PY{o}{=} \PY{l+m+mf}{0.001}
+         
+         \PY{n}{F1} \PY{o}{=} \PY{l+m+mf}{0.1}
+         \PY{n}{F2} \PY{o}{=} \PY{l+m+mf}{0.95}
+         \PY{n}{F3} \PY{o}{=} \PY{l+m+mi}{1}
+         \PY{n}{F4} \PY{o}{=} \PY{l+m+mf}{1.5}
+         
+         \PY{n}{t} \PY{o}{=} \PY{l+m+mf}{0.0}
+         \PY{n}{tmax} \PY{o}{=} \PY{l+m+mi}{300}
+             
+         \PY{k}{def} \PY{n+nf}{calcNext}\PY{p}{(}\PY{n}{zinner}\PY{p}{,} \PY{n}{Finner}\PY{p}{)}\PY{p}{:}
+             \PY{n}{dz} \PY{o}{=}   \PY{p}{[}\PY{n}{zinner}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{Finner} \PY{o}{*} \PY{n}{math}\PY{o}{.}\PY{n}{cos}\PY{p}{(}\PY{l+m+mf}{0.6} \PY{o}{*} \PY{n}{t}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{l+m+mf}{0.5} \PY{o}{*} \PY{n}{zinner}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{math}\PY{o}{.}\PY{n}{sin}\PY{p}{(}\PY{n}{zinner}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{]}
+             \PY{n}{znew} \PY{o}{=} \PY{p}{[}\PY{n}{zinner}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{+} \PY{n}{dz}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{*} \PY{n}{dt} \PY{p}{,} \PY{n}{zinner}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{+} \PY{n}{dz}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{*} \PY{n}{dt}\PY{p}{]}
+             \PY{n}{zinner}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{znew}\PY{p}{)}
+             
+         
+         \PY{k}{while} \PY{n}{t} \PY{o}{\PYZlt{}} \PY{n}{tmax}\PY{p}{:}
+             \PY{n}{t} \PY{o}{=} \PY{n}{t} \PY{o}{+} \PY{n}{dt}
+             \PY{n}{calcNext}\PY{p}{(}\PY{n}{z1}\PY{p}{,} \PY{n}{F1}\PY{p}{)}\PY{p}{;}
+             \PY{n}{calcNext}\PY{p}{(}\PY{n}{z2}\PY{p}{,} \PY{n}{F2}\PY{p}{)}\PY{p}{;}
+             \PY{n}{calcNext}\PY{p}{(}\PY{n}{z3}\PY{p}{,} \PY{n}{F3}\PY{p}{)}\PY{p}{;}
+             \PY{n}{calcNext}\PY{p}{(}\PY{n}{z4}\PY{p}{,} \PY{n}{F4}\PY{p}{)}\PY{p}{;}
+             
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{z1}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{p}{[}\PY{n}{element}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{k}{for} \PY{n}{element} \PY{o+ow}{in} \PY{n}{z1}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{F=}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{F1}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{z2}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{p}{[}\PY{n}{element}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{k}{for} \PY{n}{element} \PY{o+ow}{in} \PY{n}{z2}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{F=}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{F2}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{z3}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{p}{[}\PY{n}{element}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{k}{for} \PY{n}{element} \PY{o+ow}{in} \PY{n}{z3}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{F=}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{F3}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{z4}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{p}{[}\PY{n}{element}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{k}{for} \PY{n}{element} \PY{o+ow}{in} \PY{n}{z4}\PY{p}{]}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{F=}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{F4}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Zeit\PYZhy{}Weg\PYZhy{}Diagramm}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Zeit (t)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Amplitude}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}14}]:} <matplotlib.legend.Legend at 0x1529f34978>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_32_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Für die erste Schwingung (blau) ist zu erkennen, dass sie sehr schnell
+stabil wird. Das "Einschwingen" ist hier nicht zu erkennen. Auch die
+zweite Kurve (orange) wird nach einiger Zeit stabil. Hier lässt sich
+jedoch das "Einschwingen" beobachten.
+
+Die beiden anderen Schwingungen erreichen keinen stabilen Zustand. Dies
+lässt sich daran erkennen, dass in deren Kurve keine Wiederholung zu
+sehen ist.
+
+    Als nächstes wird θ(θ') gebildet. Da der Zustandsvektor bereits den Ort
+θ sowie die Geschwindigkeit θ' enthällt, ist keine weitere numerische
+Berechnung notwendig. Die Graphen können direkt gezeichnet werden.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{n}{element}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{k}{for} \PY{n}{element} \PY{o+ow}{in} \PY{n}{z1}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{n}{element}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{k}{for} \PY{n}{element} \PY{o+ow}{in} \PY{n}{z1}\PY{p}{]}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Phasenraum}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{θ}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{θ}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{(θ)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}15}]:} Text(0,0.5,"θ'(θ)")
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_35_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Wie bereits in oben stehender Graphik zu erkennen ist, erreicht die
+erste Schwingung äußerst schnell einen stabilen Zustand. (zu erkennen an
+der Schnellen Konvergenz)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{n}{element}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{k}{for} \PY{n}{element} \PY{o+ow}{in} \PY{n}{z2}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{n}{element}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{k}{for} \PY{n}{element} \PY{o+ow}{in} \PY{n}{z2}\PY{p}{]}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Phasenraum}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{θ}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{θ}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{(θ)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}16}]:} Text(0,0.5,"θ'(θ)")
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_37_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Auch Schwingung 2 erreicht einen stabilen Zustand. Jedoch wird hierfür
+mehr Zeit als bei Schwingung 1 benötigt.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{n}{element}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{k}{for} \PY{n}{element} \PY{o+ow}{in} \PY{n}{z3}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{n}{element}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{k}{for} \PY{n}{element} \PY{o+ow}{in} \PY{n}{z3}\PY{p}{]}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Phasenraum}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{θ}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{θ}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{(θ)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}17}]:} Text(0,0.5,"θ'(θ)")
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_39_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{n}{element}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{k}{for} \PY{n}{element} \PY{o+ow}{in} \PY{n}{z4}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{n}{element}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]} \PY{k}{for} \PY{n}{element} \PY{o+ow}{in} \PY{n}{z4}\PY{p}{]}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Phasenraum}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{θ}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{θ}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{(θ)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}18}]:} Text(0,0.5,"θ'(θ)")
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_40_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Auf dem Graph der letzen beiden Schwingungen ist keine Konvergenz zu
+erkennen.
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
